@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.sds.study.recordapp.R;
 
@@ -15,7 +14,7 @@ import com.sds.study.recordapp.R;
 
  */
 
-public class FileListActivity extends AppCompatActivity{
+public class FileListActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
 
     String TAG;
 
@@ -35,8 +34,29 @@ public class FileListActivity extends AppCompatActivity{
         pagerAdapter = new RecordPagerAdapter(getSupportFragmentManager());
 
         viewPager.setAdapter(pagerAdapter);
+        viewPager.addOnPageChangeListener(this);
 
         Log.d( TAG, "주소값 비교 : "+this);
+
+    }
+
+    //  페이지가 선택이 확정되면 (commit)
+    @Override
+    public void onPageSelected(int position){
+
+        ListFragment listFragment =(ListFragment) pagerAdapter.fragments[0];
+        DetailFragment detailFragment =(DetailFragment) pagerAdapter.fragments[1];
+        detailFragment.fileNameView.setText(listFragment.fileName);
+
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state){
+
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){
 
     }
 

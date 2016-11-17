@@ -27,6 +27,7 @@ import java.util.List;
 public class ListFragment extends Fragment implements AdapterView.OnItemClickListener{
 
     String TAG=this.getClass().getName();
+    String fileName;
 
     ListView listView;
 
@@ -78,7 +79,7 @@ public class ListFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int index, long id){
 
         TextView textView = (TextView) view;
-        String fileName = textView.getText().toString();
+        fileName = textView.getText().toString();
 
         Toast.makeText(getContext(), "파일명은 " + fileName, Toast.LENGTH_SHORT).show();
 
